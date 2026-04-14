@@ -279,3 +279,25 @@ for count in record_counts:
         print(f"Count: {count} → WARNING: Unusually high count")
     else:
         print(f"Count: {count} → OK")
+
+
+print("\n--- Count Even Numbers (1 to 20) ---")
+
+count = 0
+for i in range(1, 21):
+    if i % 2 == 0:
+        count += 1
+
+print("Total even numbers:", count)
+
+print("\n--- Find Maximum Number ---")
+
+numbers = [10, 25, 5, 40, 15]
+
+max_num = numbers[0]
+
+for num in numbers:
+    if num > max_num:
+        max_num = num
+
+print("Maximum:", max_num)

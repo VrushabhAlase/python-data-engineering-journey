@@ -137,3 +137,35 @@ print(f"Hello {name}, today we are learning {topic}!")
 records = 1500
 print(f"Total records processed: {records:,}")    # 1,500
 print(f"Pipeline success rate: {95.678:.2f}%")    # 95.68%
+
+#Section 7 — String in DE: Real Examples
+#This is where it all connects to your actual job.
+
+# 1. Clean a column name from a messy CSV header
+raw_header = "  Customer Name  "
+clean = raw_header.strip().lower().replace(" ", "_")
+print(clean)   # customer_name
+
+# 2. Parse a filename to extract date
+filename = "sales_report_2024_04_14.csv"
+parts    = filename.replace(".csv", "").split("_")
+print(parts)          # ['sales', 'report', '2024', '04', '14']
+date_str = parts[2] + "-" + parts[3] + "-" + parts[4]
+print(date_str)       # 2024-04-14
+
+# 3. Build a dynamic S3 file path
+bucket = "my-data-lake"
+env    = "prod"
+date   = "2024-04-14"
+path   = f"s3://{bucket}/{env}/sales/{date}/data.parquet"
+print(path)
+# s3://my-data-lake/prod/sales/2024-04-14/data.parquet
+
+# 4. Check file type before processing
+file = "customers.csv"
+if file.endswith(".csv"):
+    print(f"Processing CSV: {file}")
+elif file.endswith(".parquet"):
+    print(f"Processing Parquet: {file}")
+else:
+    print(f"Unknown format: {file}")

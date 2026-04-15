@@ -1,171 +1,168 @@
-#What is a String?
-#A string is simply text. Any time you wrap characters in quotes, Python treats it as a string.
+# =========================================
+# Day 5 - Strings (Complete)
+# =========================================
+
+# -----------------------------------------
+# Section 1 — What is a String?
+# -----------------------------------------
 
 name = "vrushabh"
 city = "Pune"
 job = 'Data Engineer'
 
-# Single and double quotes — same thing
+# Single / Double quotes
 first_name = "Akshay"
-last_name  = 'patil'
+last_name  = 'Patil'
 
-# Multi-line string — use triple quotes
+# Multi-line string
 about = """
 I am learning Python.
 My goal is AWS Data Engineer.
 """
 
-# String with a number inside — still a string!
+# String vs Number
 emp_id = "EMP001"
-print(type(emp_id))   # <class 'str'>
+print(type(emp_id))   # str
 
-emp_id = 11           
-print(type(emp_id))   # <class 'int'>
+emp_id = 11
+print(type(emp_id))   # int
 
-#Section 2 — String Length & Indexing
-#Think of a string as a row of boxes, each box holding one character, numbered from 0
 
-#V  r  u  s  h  a  b  h
-#0  1  2  3  4  5  6  7
+# -----------------------------------------
+# Section 2 — Length & Indexing
+# -----------------------------------------
 
 name = "Vrushabh"
 
-print(len(name))      # 8  → total characters
+print(len(name))      # length
 
-print(name[0])        # V  → first character
-print(name[1])        # r  → second character
-print(name[-1])       # h  → last character (negative = from end)
-print(name[-2])       # b  → second from last
-print(name[-5])
-print(name[-7])
+print(name[0])
+print(name[1])
+print(name[-1])
+print(name[-2])
 print(name[5])
 
-print ("String with loop")
-name = "vrushabh"
 
-for i in range(0, 8):
+# -----------------------------------------
+# Section 3 — Looping through String
+# -----------------------------------------
+
+print("\n--- Loop using index ---")
+for i in range(len(name)):
     print(name[i])
 
+print("\n--- Loop using slicing ---")
 for ch in name[0:8]:
     print(ch)
 
+print("\n--- Direct loop (Best Practice) ---")
 for ch in name:
     print(ch)
 
-for zx in name[5:7]:
-    print(zx)
 
-# Syntax: string[start : stop]   (stop is excluded)
+# -----------------------------------------
+# Section 4 — Slicing
+# -----------------------------------------
 
-name = "Vrushabh"
+print(name[0:4])
+print(name[2:6])
+print(name[:4])
+print(name[4:])
+print(name[:])
 
-print(name[0:4])    # Vrus  → index 0,1,2,3
-print(name[2:6])    # ushab
-print(name[0:3])    # Vru
 
-# Shortcuts
-print(name[:4])     # Vrus  → from beginning to index 4
-print(name[4:])     # habh  → from index 4 to end
-print(name[:])      # Vrushabh → full string
-
-#Section 4 — String Methods (the real power)
-#Methods are built-in actions you can perform on a string. You call them with a dot .
+# -----------------------------------------
+# Section 5 — String Methods
+# -----------------------------------------
 
 text = "  hello data engineer  "
 
-# Case methods
-print(text.upper())       # HELLO DATA ENGINEER
-print(text.lower())       # hello data engineer
-print(text.title())       # Hello Data Engineer
+print(text.upper())
+print(text.lower())
+print(text.title())
 
-# Clean whitespace
-print(text.strip())       # "hello data engineer"  → removes spaces from both ends
-print(text.lstrip())      # removes left spaces only
-print(text.rstrip())      # removes right spaces only
+print(text.strip())
+print(text.lstrip())
+print(text.rstrip())
 
-# Check content
-print(text.strip().startswith("hello"))   # True
-print(text.strip().endswith("engineer"))  # True
+print(text.strip().startswith("hello"))
+print(text.strip().endswith("engineer"))
 
-# Count and find
 sentence = "data engineer works with data"
-print(sentence.count("data"))     # 2  → how many times "data" appears
-print(sentence.find("engineer"))  # 5  → index where "engineer" starts
+print(sentence.count("data"))
+print(sentence.find("engineer"))
 
 
-#Section 5 — Replace & Split (most used in DE!)
+# -----------------------------------------
+# Section 6 — Replace & Split
+# -----------------------------------------
 
-# replace(old, new)
 filename = "sales_data_2024.CSV"
 clean = filename.replace(".CSV", ".csv")
-print(clean)    # sales_data_2024.csv
-
-filename = "Data_engineering_stundets_2026.sql"
-clean = filename.replace(".sql",".SQL")
 print(clean)
 
-# split(separator) — breaks string into a LIST
+filename = "Data_engineering_students_2026.sql"
+clean = filename.replace(".sql", ".SQL")
+print(clean)
+
 csv_row = "Vrushabh,Pune,DataEngineer,AWS"
 fields = csv_row.split(",")
 print(fields)
-# ['Vrushabh', 'Pune', 'DataEngineer', 'AWS']
 
-print(fields[0])   # Vrushabh
-print(fields[2])   # DataEngineer
+print(fields[0])
+print(fields[2])
 
-# split by space (default)
 sentence = "I love data engineering"
 words = sentence.split()
-print(words)   # ['I', 'love', 'data', 'engineering']
+print(words)
 
 
-#Section 6 — f-strings (modern way to format strings)
-#f-strings let you embed variables directly inside a string. Used everywhere — log messages, file paths, SQL queries.
+# -----------------------------------------
+# Section 7 — f-Strings
+# -----------------------------------------
 
-name   = "Vrushabh"
-day    = 4
-topic  = "Strings"
+name = "Vrushabh"
+day = 5
+topic = "Strings"
 
-# Old way (messy)
-print("Day " + str(day) + ": " + topic)
-
-# f-string way (clean and readable)
 print(f"Day {day}: {topic}")
 print(f"Hello {name}, today we are learning {topic}!")
 
-# With expressions inside
 records = 1500
-print(f"Total records processed: {records:,}")    # 1,500
-print(f"Pipeline success rate: {95.678:.2f}%")    # 95.68%
+print(f"Total records processed: {records:,}")
+print(f"Pipeline success rate: {95.678:.2f}%")
 
-#Section 7 — String in DE: Real Examples
-#This is where it all connects to your actual job.
 
-# 1. Clean a column name from a messy CSV header
+# -----------------------------------------
+# Section 8 — Real Data Engineering Examples
+# -----------------------------------------
+
+# Clean column name
 raw_header = "  Customer Name  "
 clean = raw_header.strip().lower().replace(" ", "_")
-print(clean)   # customer_name
+print(clean)
 
-# 2. Parse a filename to extract date
+# Extract date from filename
 filename = "sales_report_2024_04_14.csv"
-parts    = filename.replace(".csv", "").split("_")
-print(parts)          # ['sales', 'report', '2024', '04', '14']
-date_str = parts[2] + "-" + parts[3] + "-" + parts[4]
-print(date_str)       # 2024-04-14
+parts = filename.replace(".csv", "").split("_")
+date_str = f"{parts[2]}-{parts[3]}-{parts[4]}"
+print(date_str)
 
-# 3. Build a dynamic S3 file path
+# Build S3 path
 bucket = "my-data-lake"
-env    = "prod"
-date   = "2024-04-14"
-path   = f"s3://{bucket}/{env}/sales/{date}/data.parquet"
+env = "prod"
+date = "2024-04-14"
+path = f"s3://{bucket}/{env}/sales/{date}/data.parquet"
 print(path)
-# s3://my-data-lake/prod/sales/2024-04-14/data.parquet
 
-# 4. Check file type before processing
+# File type check
 file = "customers.csv"
+
 if file.endswith(".csv"):
     print(f"Processing CSV: {file}")
 elif file.endswith(".parquet"):
     print(f"Processing Parquet: {file}")
 else:
     print(f"Unknown format: {file}")
+
+    

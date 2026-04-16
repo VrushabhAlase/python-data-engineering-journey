@@ -82,3 +82,41 @@ numbers.pop(3)
 
 print(numbers)
 
+print(len(numbers))
+
+print(10 in numbers)   # True
+print(99 in numbers)   # False
+
+nums = [5, 2, 9, 1]
+
+nums.sort()
+
+print(nums)
+
+nums.reverse()
+
+print(nums)
+
+names = ["A", "B", "C"]
+
+# Add "D"
+# Insert "X" at index 1
+# Remove "B"
+# Print final list
+names.append("D")
+
+print(names)
+
+names.insert(1, "X")
+
+print(names)
+
+names.remove("B")
+
+print(names)
+
+names.sort()
+
+print(names)
+names.reverse()
+print(names)

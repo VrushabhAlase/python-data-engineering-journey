@@ -120,3 +120,14 @@ names.sort()
 print(names)
 names.reverse()
 print(names)
+
+nums = [10, 50, 20, 80, 30]
+
+max_num = nums[0]
+
+for num in nums:
+    if num > max_num:
+        max_num = num
+print ("Maximum:",max_num)
+
+print(type(max_num))

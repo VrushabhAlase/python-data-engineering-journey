@@ -28,3 +28,57 @@ cities = ["Pune", "Mumbai", "Delhi"]
 
 for city in cities:
     print(city)
+
+"""
+Step 2: List Operations
+  Why this matters
+
+  In Data Engineering you:
+
+add records
+remove bad data
+update values
+"""
+
+numbers = [10, 20, 30,50,60,70,80]
+
+numbers.append(40)
+
+print(numbers)
+
+numbers.append(100)
+
+print(numbers)
+
+numbers.insert(1, 15)
+
+print(numbers)
+
+numbers.insert(5, 90)
+
+print(numbers)
+
+numbers.remove(90)
+
+print(numbers)
+
+numbers.remove(40)
+
+print(numbers)
+
+numbers.insert(4, 40)
+
+print(numbers)
+
+numbers.insert(9, 90)
+
+print(numbers)
+
+numbers.pop(1)
+
+print(numbers)
+
+numbers.pop(3)
+
+print(numbers)
+

@@ -1,255 +1,242 @@
-"""
-What is a Dictionary?
-A dictionary stores data as key-value pairs. Instead of accessing data by index number like a list, you access it by a name (key).
-Think of it like a real dictionary — you look up a word (key) to get its meaning (value).
-"""
+# =========================================
+# Day 6 - Dictionary (Complete Guide)
+# =========================================
 
-# List — access by index (position)
-employee = ["Vrushabh", "Pune", "Data Engineer"]
-print(employee[0])   # Vrushabh — you need to remember index 0 = name
+# -----------------------------------------
+# What is a Dictionary?
+# -----------------------------------------
+# A dictionary stores data as key-value pairs
+# Key → value mapping (like JSON / API response)
 
-# Dictionary — access by key (name)
-employee = {
+# List example (index-based)
+employee_list = ["Vrushabh", "Pune", "Data Engineer"]
+print(employee_list[0])   # need to remember index
+
+# Dictionary example (key-based)
+employee_dict = {
     "name": "Vrushabh",
     "city": "Pune",
     "role": "Data Engineer"
 }
-print(employee["name"])   # Vrushabh — clear and readable
+print(employee_dict["name"])   # clear & readable
 
-#Section 1 — Creating a Dictionary
 
-# Basic dictionary
+# =========================================
+# Section 1 — Creating Dictionary
+# =========================================
+
 employee = {
-    "name"  : "Vrushabh",
-    "city"  : "Pune",
-    "role"  : "Data Engineer",
-    "exp"   : 2
+    "name": "Vrushabh",
+    "city": "Pune",
+    "role": "Data Engineer",
+    "exp": 2
 }
 
+print("\n--- Basic Dictionary ---")
 print(employee)
-print(type(employee))    # <class 'dict'>
+print(type(employee))
 
-# Empty dictionary — add data later
+# Empty dictionary
 config = {}
-config["env"]    = "prod"
+config["env"] = "prod"
 config["bucket"] = "my-data-lake"
-print(config)    # {'env': 'prod', 'bucket': 'my-data-lake'}
+print("\n--- Config ---")
+print(config)
 
-#Section 2 — Accessing Values
 
-employee = {
-    "name": "Vrushabh",
-    "city": "Pune",
-    "role": "Data Engineer",
-    "exp" : 2
-}
+# =========================================
+# Section 2 — Accessing Values
+# =========================================
 
-# Method 1 — direct key access
-print(employee["name"])    # Vrushabh
-print(employee["role"])    # Data Engineer
+print("\n--- Access Values ---")
+print(employee["name"])
+print(employee["role"])
 
-# Method 2 — get() — SAFER, returns None if key missing (no error)
-print(employee.get("city"))       # Pune
-print(employee.get("salary"))     # None  — no crash!
-print(employee.get("salary", 0))  # 0     — default value if key missing
+# Safe access
+print(employee.get("city"))
+print(employee.get("salary"))       # None
+print(employee.get("salary", 0))    # default value
 
-# Why get() matters in DE:
-# Source data is often incomplete — missing fields crash your pipeline
-# get() with a default value keeps your pipeline running safely
 
-#Section 3 — Add, Update, Delete
+# =========================================
+# Section 3 — Add, Update, Delete
+# =========================================
 
-employee = {"name": "Vrushabh", "city": "Pune"}
+employee_update = {"name": "Vrushabh", "city": "Pune"}
 
-# Add new key
-employee["role"] = "Data Engineer"
-employee["exp"]  = 2
-print(employee)
+# Add
+employee_update["role"] = "Data Engineer"
+employee_update["exp"] = 2
+print("\nAfter Add:", employee_update)
 
-# Update existing key
-employee["city"] = "Mumbai"    # overwrites Pune
-employee["exp"]  = 3
-print(employee)
+# Update
+employee_update["city"] = "Mumbai"
+employee_update["exp"] = 3
+print("After Update:", employee_update)
 
-# Delete a key — del
-del employee["exp"]
-print(employee)
+# Delete
+del employee_update["exp"]
+print("After Delete:", employee_update)
 
-# Delete and return value — pop()
-city = employee.pop("city")
-print("Removed city:", city)    # Mumbai
-print(employee)
+# Pop
+city = employee_update.pop("city")
+print("Removed city:", city)
+print(employee_update)
 
-#Section 4 — Looping through a Dictionary
 
-employee = {
-    "name": "Vrushabh",
-    "city": "Pune",
-    "role": "Data Engineer",
-    "exp" : 2
-}
+# =========================================
+# Section 4 — Looping Dictionary
+# =========================================
 
-# Loop through keys only
-print("--- Keys ---")
+print("\n--- Keys ---")
 for key in employee:
     print(key)
 
-# Loop through values only
-print("--- Values ---")
+print("\n--- Values ---")
 for value in employee.values():
     print(value)
 
-# Loop through BOTH key and value — most useful
-print("--- Key + Value ---")
+print("\n--- Key + Value ---")
 for key, value in employee.items():
     print(f"{key} : {value}")
 
-#Section 5 — Dictionary Methods
 
-employee = {"name": "Vrushabh", "city": "Pune", "role": "Data Engineer"}
+# =========================================
+# Section 5 — Dictionary Methods
+# =========================================
 
-# Get all keys
-print(employee.keys())      # dict_keys(['name', 'city', 'role'])
+print("\n--- Methods ---")
+print(employee.keys())
+print(employee.values())
+print(employee.items())
 
-# Get all values
-print(employee.values())    # dict_values(['Vrushabh', 'Pune', 'Data Engineer'])
+print("name" in employee)
+print("salary" in employee)
 
-# Get all key-value pairs
-print(employee.items())     # dict_items([('name', 'Vrushabh'), ...])
+print("Length:", len(employee))
 
-# Check if key exists
-print("name" in employee)      # True
-print("salary" in employee)    # False
 
-# Length — number of keys
-print(len(employee))           # 3
+# =========================================
+# Section 6 — List of Dictionaries
+# =========================================
 
-#Section 6 — List of Dictionaries
-
-"""
-This is the most important pattern in DE. Every row in a CSV, every record from an API, every row in a database table — they all become a list of dictionaries in Python.
-"""
-# Each dict = one row/record
 employees = [
-    {"id": "EMP001", "name": "Vrushabh", "city": "Pune",   "role": "DE"},
-    {"id": "EMP002", "name": "Akshay",   "city": "Mumbai", "role": "DA"},
-    {"id": "EMP003", "name": "Rohit",    "city": "Delhi",  "role": "DE"},
+    {"id": "EMP001", "name": "Vrushabh", "city": "Pune", "role": "DE"},
+    {"id": "EMP002", "name": "Akshay", "city": "Mumbai", "role": "DA"},
+    {"id": "EMP003", "name": "Rohit", "city": "Delhi", "role": "DE"},
 ]
 
-# Access one record
-print(employees[0])                  # first record
-print(employees[0]["name"])          # Vrushabh
+print("\n--- First Record ---")
+print(employees[0])
+print(employees[0]["name"])
 
-# Loop through all records
+print("\n--- All Employees ---")
 for emp in employees:
     print(f"{emp['id']} | {emp['name']} | {emp['city']}")
 
-# Filter — only Data Engineers
-print("\n--- Data Engineers only ---")
+print("\n--- Data Engineers Only ---")
 for emp in employees:
     if emp["role"] == "DE":
         print(emp["name"])
 
-#Section 7 — Nested Dictionary
 
-# A dictionary inside a dictionary
+# =========================================
+# Section 7 — Nested Dictionary
+# =========================================
+
 pipeline = {
-    "name"   : "sales_pipeline",
-    "status" : "running",
-    "config" : {
-        "source" : "s3://raw/sales/",
-        "target" : "s3://processed/sales/",
-        "format" : "parquet"
+    "name": "sales_pipeline",
+    "status": "running",
+    "config": {
+        "source": "s3://raw/sales/",
+        "target": "s3://processed/sales/",
+        "format": "parquet"
     }
 }
 
-# Access nested values
-print(pipeline["name"])                      # sales_pipeline
-print(pipeline["config"]["source"])          # s3://raw/sales/
-print(pipeline["config"]["format"])          # parquet
+print("\n--- Nested Dictionary ---")
+print(pipeline["name"])
+print(pipeline["config"]["source"])
 
-# Update nested value
 pipeline["config"]["format"] = "csv"
-print(pipeline["config"]["format"])          # csv
+print(pipeline["config"]["format"])
 
-#Section 8 — DE Real-World Examples
-# DE Example 1: Parse a single CSV row into a dict
-# In real pipelines each row from a file becomes a dict
 
+# =========================================
+# Section 8 — Real Data Engineering Examples
+# =========================================
+
+# Example 1: CSV row → dictionary
 csv_row = "EMP001,Vrushabh,Pune,DataEngineer,85000"
-fields  = csv_row.split(",")
+fields = csv_row.split(",")
 
 record = {
-    "id"    : fields[0],
-    "name"  : fields[1],
-    "city"  : fields[2],
-    "role"  : fields[3],
+    "id": fields[0],
+    "name": fields[1],
+    "city": fields[2],
+    "role": fields[3],
     "salary": int(fields[4])
 }
+
+print("\n--- Parsed Record ---")
 print(record)
 print(f"Name: {record['name']} | Salary: {record['salary']:,}")
 
 
-# DE Example 2: Pipeline config dictionary
-# Real Glue/Airflow jobs use config dicts like this
-
+# Example 2: Pipeline config
 config = {
-    "env"        : "prod",
-    "source"     : "s3://raw-bucket/sales/2024/",
-    "target"     : "s3://processed-bucket/sales/2024/",
-    "file_format": "parquet",
-    "partition"  : "date"
+    "env": "prod",
+    "source": "s3://raw-bucket/sales/2024/",
+    "target": "s3://processed-bucket/sales/2024/",
+    "file_format": "parquet"
 }
 
-print(f"\nRunning pipeline in {config['env']} env")
-print(f"Reading from  : {config['source']}")
-print(f"Writing to    : {config['target']}")
-print(f"Output format : {config['file_format']}")
+print("\n--- Pipeline Config ---")
+print(f"Running in {config['env']}")
+print(f"Source: {config['source']}")
 
 
-# DE Example 3: Count records per region (aggregation)
-# This is what GROUP BY does in SQL — replicate it in Python
-
+# Example 3: Aggregation (GROUP BY)
 records = [
     {"region": "North", "sales": 1500},
     {"region": "South", "sales": 800},
     {"region": "North", "sales": 2000},
-    {"region": "East",  "sales": 1200},
-    {"region": "South", "sales": 900},
 ]
 
 region_totals = {}
 
-for record in records:
-    region = record["region"]
-    sales  = record["sales"]
+for r in records:
+    region = r["region"]
+    sales = r["sales"]
+
     if region in region_totals:
-        region_totals[region] += sales     # add to existing
+        region_totals[region] += sales
     else:
-        region_totals[region] = sales      # first time — create key
+        region_totals[region] = sales
 
 print("\n--- Sales by Region ---")
 for region, total in region_totals.items():
-    print(f"{region}: {total:,}")
+    print(f"{region}: {total}")
 
 
-# DE Example 4: Schema validation
-# Check incoming data has all required fields before processing
+# Example 4: Schema validation
+required_fields = ["id", "name", "city"]
 
-required_fields = ["id", "name", "city", "role"]
-
-incoming = {"id": "EMP004", "name": "Sneha", "role": "DE"}   # missing city!
+incoming = {"id": "EMP004", "name": "Sneha"}
 
 missing = []
+
 for field in required_fields:
     if field not in incoming:
         missing.append(field)
 
-if missing:
-    print(f"\nSchema error — missing fields: {missing}")
-else:
-    print("\nRecord is valid — proceed to pipeline")
+print("\n--- Schema Check ---")
+print("Missing fields:", missing)
 
+
+# =========================================
+# Practice
+# =========================================
 
 data = [
     {"name": "A", "marks": 80},
@@ -257,6 +244,20 @@ data = [
     {"name": "C", "marks": 90}
 ]
 
+print("\n--- Marks > 70 ---")
 for std in data:
     if std["marks"] > 70:
         print(std["name"])
+
+
+student = {
+    "name": "Akshay",
+    "marks": {
+        "math": 80,
+        "science": 75
+    }
+}
+
+print("\n--- Nested Access ---")
+print(student["marks"]["math"])
+print(student["marks"]["science"])

@@ -1,22 +1,24 @@
 # Python Data Engineering Journey 🚀
 
 This repository documents my end-to-end journey of learning Python with a focus on becoming a Data Engineer.
-It includes daily practice, concepts, interview preparation, and hands-on coding.
+It includes daily hands-on coding, concept building, real-world examples, and interview preparation.
 
 ---
 
 ## 📌 Topics Covered
 
-* Python Basics (Variables, Data Types)
+### ✅ Phase 1: Core Python (Completed)
+
+* Variables & Data Types
 * Operators (Arithmetic, Comparison, Logical)
 * Control Flow (if, else, elif, nested if)
 * Loops (for, while)
-* Data Structures (Lists, Tuples, Sets, Dictionaries)
-* Functions
-* File Handling
-* JSON & CSV Processing
-* Exception Handling
-* Modules & Libraries
+* Strings (slicing, methods, real use cases)
+* Collections
+
+  * Lists (operations, slicing, problems)
+  * Dictionaries (real-world usage, nested, JSON-like data)
+* Functions (basic to advanced, real ETL-style logic)
 
 ---
 
@@ -24,8 +26,13 @@ It includes daily practice, concepts, interview preparation, and hands-on coding
 
 * ✅ Day 1: Variables & Data Types
 * ✅ Day 2: Operators
-* ✅ Day 3: Control Flow (if-else, elif, nested if)
-* 🔄 Day 4: Loops (In Progress)
+* ✅ Day 3: Control Flow
+* ✅ Day 4: Loops
+* ✅ Day 5: Strings
+* ✅ Day 6: Collections (List & Dictionary)
+* ✅ Day 7: Functions (Basic + Advanced)
+
+👉 **Phase 1 Completed — Strong Python Foundation Built 🔥**
 
 ---
 
@@ -53,19 +60,20 @@ mini_projects
 To become a **Data Engineer** by:
 
 * Building strong Python fundamentals
-* Practicing real-world problems
-* Creating data pipelines and ETL workflows
+* Solving real-world data problems
+* Writing clean and reusable code
+* Developing ETL pipelines
 * Preparing for technical interviews
 
 ---
 
 ## 🧠 Interview Preparation
 
-This repo also includes:
+This repository includes:
 
 * Topic-wise interview questions
-* Practice problems
-* Real-world scenarios
+* Hands-on coding practice
+* Real-world data scenarios
 
 ---
 
@@ -74,21 +82,21 @@ This repo also includes:
 * Python 🐍
 * Git & GitHub
 * VS Code
-* (Upcoming) Pandas, NumPy, PySpark
+* (Next) Pandas, NumPy, PySpark
 
 ---
 
-## 🚀 Future Scope
+## 🚀 Next Steps
 
-* ETL Pipeline Development
-* Data Processing & Transformation
-* Working with APIs
-* Big Data Tools (PySpark)
-* Real-world Data Engineering Projects
+* Lambda & Functional Programming
+* File Handling (Read/Write)
+* JSON & CSV Processing
+* Exception Handling
+* Real Data Engineering Mini Projects
 
 ---
 
-## 📈 Progress Philosophy
+## 📈 Learning Approach
 
 > Learn → Practice → Build → Push → Repeat 🔁
 

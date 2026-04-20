@@ -45,3 +45,36 @@ def get_full_name(first, last):
 
 name = get_full_name("Vrushabh", "Alase")
 print(name)
+
+# 1. Function to check even number
+# input: number
+# output: True/False
+
+# 2. Function to calculate square
+
+# 3. Function to return max of two numbers
+
+def check_even_number (num):
+    return num%2== 0
+result = check_even_number(10)
+print (result)
+
+def calculate_square (num):
+    return num*num
+result = calculate_square(10)
+print (result)
+
+def max_of_two(a, b):
+    if  a>b :
+      return a
+    else:
+      return b
+
+result = max_of_two(10, 20)
+print(result)
+
+
+
+
+
+    

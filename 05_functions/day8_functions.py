@@ -187,3 +187,4 @@ print("Details:", get_details(person))
 # multiple return → tuple unpacking
 # functions + loops → data processing
 # functions + dict → real-world ETL logic
+

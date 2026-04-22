@@ -231,3 +231,11 @@ with open("copy.txt", "w") as target:
     target.write(content)
 
 print("File copied successfully")
+
+
+print("\n--- Filter Lines ---")
+
+with open("sample.txt", "r") as file:
+    for line in file:
+        if "Data" in line:
+            print(line.strip())

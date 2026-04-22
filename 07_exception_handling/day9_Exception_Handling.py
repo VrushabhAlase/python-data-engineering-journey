@@ -221,3 +221,13 @@ with open("sample.txt", "r") as file:
         word_count += len(words)
 
 print("Total words:", word_count)
+
+print("\n--- File Copy ---")
+
+with open("sample.txt", "r") as source:
+    content = source.read()
+
+with open("copy.txt", "w") as target:
+    target.write(content)
+
+print("File copied successfully")

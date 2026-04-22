@@ -111,3 +111,35 @@ with open("output.csv", "w", newline="") as file:
     writer.writerows(data)
 
 print("CSV file written successfully")
+
+data = {
+    "id": 101,
+    "name": "Vrushabh",
+    "city": "Pune"
+}
+
+import json
+
+with open("data.json", "w") as file:
+    json.dump(data, file)
+
+print("CSV file written successfully")
+
+data = {
+    "id": 101,
+    "name": "Vrushabh",
+    "city": "Pune"
+}
+
+import json
+
+with open("data.json", "w") as file:
+    json.dump(data, file)
+
+import json
+
+with open("data.json", "r") as file:
+    data = json.load(file)
+
+print(data)
+print(data["name"])

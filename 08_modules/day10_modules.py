@@ -1,71 +1,110 @@
+# =========================================
+# Day 10 - Python Modules (os, datetime, random)
+# =========================================
+
+"""
+📌 Purpose of this file:
+
+Learn and use important Python modules:
+1. os       → File & directory operations
+2. datetime → Date & time handling
+3. random   → Random data generation
+
+These are widely used in Data Engineering pipelines.
+"""
+
+# =========================================
+# Section 1 — OS MODULE (File System Operations)
+# =========================================
+
 import os
 
 print("\n--- OS MODULE ---")
 
-# Current working directory
-print("Current Path:", os.getcwd())
+# Get current working directory (where script is running)
+current_path = os.getcwd()
+print("Current Path:", current_path)
 
-# List files in directory
-print("Files:", os.listdir())
+# List all files and folders in current directory
+files = os.listdir()
+print("\nFiles in current directory:")
+for f in files:
+    print(f)
 
-# Create a folder
+# Create a folder (if it does not exist)
 os.makedirs("test_folder", exist_ok=True)
-print("Folder created")
+print("\n'test_folder' created (or already exists)")
 
-# Check if file exists
+# Check if a file exists
 if os.path.exists("sample.txt"):
-    print("sample.txt exists")
+    print("\n'sample.txt' exists")
 
-# Get file size
+# Get file size (in bytes)
 if os.path.exists("sample.txt"):
-    print("File size:", os.path.getsize("sample.txt"), "bytes")
+    size = os.path.getsize("sample.txt")
+    print("File size:", size, "bytes")
+
+
+# =========================================
+# Section 2 — DATETIME MODULE (Date & Time)
+# =========================================
 
 from datetime import datetime
 
 print("\n--- DATETIME MODULE ---")
 
-# Current date & time
+# Get current date and time
 now = datetime.now()
-print("Now:", now)
+print("Current DateTime:", now)
 
-# Format date
-formatted = now.strftime("%Y-%m-%d %H:%M:%S")
-print("Formatted:", formatted)
+# Format date (commonly used in pipelines/logs)
+formatted_date = now.strftime("%Y-%m-%d %H:%M:%S")
+print("Formatted Date:", formatted_date)
 
-# Extract parts
+# Extract individual components
 print("Year:", now.year)
 print("Month:", now.month)
 print("Day:", now.day)
 
 
+# =========================================
+# Section 3 — RANDOM MODULE (Test Data)
+# =========================================
+
 import random
 
 print("\n--- RANDOM MODULE ---")
 
-# Random number
-print("Random int:", random.randint(1, 100))
+# Generate random number between 1 and 100
+rand_num = random.randint(1, 100)
+print("Random Number:", rand_num)
 
-# Random choice
+# Select random item from list
 cities = ["Pune", "Mumbai", "Delhi"]
-print("Random city:", random.choice(cities))
+random_city = random.choice(cities)
+print("Random City:", random_city)
 
-# Shuffle list
+# Shuffle list randomly
 nums = [1, 2, 3, 4, 5]
 random.shuffle(nums)
-print("Shuffled:", nums)
+print("Shuffled List:", nums)
 
 
-import os
-from datetime import datetime
+# =========================================
+# Section 4 — Real Data Engineering Use Case
+# =========================================
 
 print("\n--- REAL USE CASE ---")
 
-# Dynamic file path
+# Create dynamic folder based on today's date
 date = datetime.now().strftime("%Y-%m-%d")
 
 folder_path = f"data/{date}"
+
+# Create folder structure (like partitioned data)
 os.makedirs(folder_path, exist_ok=True)
 
+# Create file inside that folder
 file_path = f"{folder_path}/output.txt"
 
 with open(file_path, "w") as file:
@@ -75,65 +114,70 @@ print("File created at:", file_path)
 
 
 # =========================================
-# Practice Solutions - Modules
+# Section 5 — Practice Tasks (Solutions)
 # =========================================
 
-import os
-from datetime import datetime
-import random
+print("\n--- PRACTICE TASKS ---")
 
 # -----------------------------------------
-# Task 1: Print current folder files
+# Task 1: List all files
 # -----------------------------------------
 
-print("\n--- Task 1: List Files ---")
-
-files = os.listdir()
-print("Files in current directory:")
-for f in files:
+print("\nTask 1: Files in current directory")
+for f in os.listdir():
     print(f)
 
 
 # -----------------------------------------
-# Task 2: Create folder "logs"
+# Task 2: Create "logs" folder
 # -----------------------------------------
-
-print("\n--- Task 2: Create Folder ---")
 
 os.makedirs("logs", exist_ok=True)
-print("Folder 'logs' created (or already exists)")
+print("\nTask 2: 'logs' folder created")
 
 
 # -----------------------------------------
-# Task 3: Print current date YYYY-MM-DD
+# Task 3: Print current date (YYYY-MM-DD)
 # -----------------------------------------
-
-print("\n--- Task 3: Current Date ---")
 
 today = datetime.now().strftime("%Y-%m-%d")
-print("Today:", today)
+print("\nTask 3: Today's Date:", today)
 
 
 # -----------------------------------------
-# Task 4: Random number between 50-100
+# Task 4: Generate random number (50-100)
 # -----------------------------------------
-
-print("\n--- Task 4: Random Number ---")
 
 rand_num = random.randint(50, 100)
-print("Random Number:", rand_num)
+print("\nTask 4: Random Number (50-100):", rand_num)
 
 
 # -----------------------------------------
 # Task 5: Create file with today's date
 # -----------------------------------------
 
-print("\n--- Task 5: Create Dated File ---")
-
 file_name = f"report_{today}.txt"
 
 with open(file_name, "w") as file:
-    file.write("Daily report generated\n")
+    file.write("Daily Report\n")
     file.write(f"Date: {today}")
 
-print("File created:", file_name)
+print("\nTask 5: File created →", file_name)
+
+
+# =========================================
+# Key Learnings
+# =========================================
+
+"""
+✔ os module → file and directory handling
+✔ datetime → date formatting and extraction
+✔ random → test data and sampling
+
+👉 These are used in:
+- ETL pipelines
+- Logging systems
+- Data partitioning
+- Automation scripts
+"""
+

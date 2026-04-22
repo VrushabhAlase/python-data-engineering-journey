@@ -209,3 +209,15 @@ with open("sample.txt", "r") as file:
         count += 1
 
 print("Total lines:", count)
+
+
+print("\n--- Count Words ---")
+
+word_count = 0
+
+with open("sample.txt", "r") as file:
+    for line in file:
+        words = line.split()
+        word_count += len(words)
+
+print("Total words:", word_count)

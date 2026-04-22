@@ -95,3 +95,4 @@ with open("high_salary.json", "w") as file:
     json.dump(high_salary, file, indent=4)
 
 print("Filtered JSON created")
+

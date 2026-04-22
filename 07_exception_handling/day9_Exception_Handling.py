@@ -198,3 +198,14 @@ except FileNotFoundError:
 - APIs
 - Production systems
 """
+
+
+print("\n--- Count Lines ---")
+
+count = 0
+
+with open("sample.txt", "r") as file:
+    for line in file:
+        count += 1
+
+print("Total lines:", count)

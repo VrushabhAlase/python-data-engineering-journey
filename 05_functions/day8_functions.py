@@ -188,3 +188,8 @@ print("Details:", get_details(person))
 # functions + loops → data processing
 # functions + dict → real-world ETL logic
 
+with open("data.csv", "w") as file:
+    file.write("id,name,city,salary\n")
+    file.write("1,A,Pune,30000\n")
+    file.write("2,B,Mumbai,60000\n")
+    file.write("3,C,Delhi,70000\n")

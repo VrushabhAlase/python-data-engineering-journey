@@ -1,16 +1,12 @@
-# =========================================
-# Sales Data Pipeline (Production Version)
-# =========================================
-
 import pandas as pd
 import os
 import logging
+import sys
 
 # -----------------------------------------
 # Setup Logging
 # -----------------------------------------
 
-# Create logs folder
 os.makedirs("logs", exist_ok=True)
 
 logging.basicConfig(
@@ -21,43 +17,48 @@ logging.basicConfig(
 
 logging.info("Pipeline started")
 
-
 try:
     # -----------------------------------------
-    # STEP 1: READ DATA
+    # STEP 1: GET INPUT FILE
     # -----------------------------------------
-    logging.info("Reading input file")
 
-    df = pd.read_csv("input/sales.csv")
+    if len(sys.argv) > 1:
+        input_file = sys.argv[1]
+    else:
+        input_file = "input/sales.csv"
+
+    logging.info(f"Using input file: {input_file}")
 
     # -----------------------------------------
-    # STEP 2: CLEAN DATA
+    # STEP 2: READ DATA
     # -----------------------------------------
-    logging.info("Cleaning data")
+
+    df = pd.read_csv(input_file)
+
+    # -----------------------------------------
+    # STEP 3: CLEAN DATA
+    # -----------------------------------------
 
     df["amount"] = df["amount"].fillna(0).astype(int)
 
     # -----------------------------------------
-    # STEP 3: TRANSFORM DATA
+    # STEP 4: TRANSFORM
     # -----------------------------------------
-    logging.info("Transforming data")
 
     df["tax"] = df["amount"] * 0.10
     df["total"] = df["amount"] + df["tax"]
 
     # -----------------------------------------
-    # STEP 4: SAVE OUTPUT
+    # STEP 5: SAVE OUTPUT
     # -----------------------------------------
-    logging.info("Saving output")
 
     os.makedirs("output", exist_ok=True)
 
-    df.to_csv("output/processed_sales.csv", index=False)
+    output_file = "output/processed_sales.csv"
+    df.to_csv(output_file, index=False)
 
     logging.info("Pipeline completed successfully")
-
     print("Pipeline completed successfully ✅")
-
 
 except Exception as e:
     logging.error(f"Error occurred: {e}")

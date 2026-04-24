@@ -1,62 +1,64 @@
 # =========================================
-# Sales Data Pipeline (Basic Version)
+# Sales Data Pipeline (Production Version)
 # =========================================
-
-"""
-Goal:
-Read → Clean → Transform → Save
-"""
 
 import pandas as pd
 import os
-
-print("\n--- STEP 1: READ DATA ---")
-
-# Read input file
-df = pd.read_csv("input/sales.csv")
-print(df)
-
+import logging
 
 # -----------------------------------------
-# STEP 2: CLEAN DATA
+# Setup Logging
 # -----------------------------------------
 
-print("\n--- STEP 2: CLEAN DATA ---")
+# Create logs folder
+os.makedirs("logs", exist_ok=True)
 
-# Fill missing values with 0
-df["amount"] = df["amount"].fillna(0).astype(int)
+logging.basicConfig(
+    filename="logs/pipeline.log",
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
 
-print(df)
-
-
-# -----------------------------------------
-# STEP 3: TRANSFORM DATA
-# -----------------------------------------
-
-print("\n--- STEP 3: TRANSFORM DATA ---")
-
-# Add new columns
-df["tax"] = df["amount"] * 0.10
-df["total"] = df["amount"] + df["tax"]
-
-print(df)
+logging.info("Pipeline started")
 
 
-# -----------------------------------------
-# STEP 4: SAVE OUTPUT
-# -----------------------------------------
+try:
+    # -----------------------------------------
+    # STEP 1: READ DATA
+    # -----------------------------------------
+    logging.info("Reading input file")
 
-print("\n--- STEP 4: SAVE OUTPUT ---")
+    df = pd.read_csv("input/sales.csv")
 
-# Create output folder if not exists
-os.makedirs("output", exist_ok=True)
+    # -----------------------------------------
+    # STEP 2: CLEAN DATA
+    # -----------------------------------------
+    logging.info("Cleaning data")
 
-# Save processed file
-df.to_csv("output/processed_sales.csv", index=False)
+    df["amount"] = df["amount"].fillna(0).astype(int)
 
-print("File saved successfully at: output/processed_sales.csv")
+    # -----------------------------------------
+    # STEP 3: TRANSFORM DATA
+    # -----------------------------------------
+    logging.info("Transforming data")
+
+    df["tax"] = df["amount"] * 0.10
+    df["total"] = df["amount"] + df["tax"]
+
+    # -----------------------------------------
+    # STEP 4: SAVE OUTPUT
+    # -----------------------------------------
+    logging.info("Saving output")
+
+    os.makedirs("output", exist_ok=True)
+
+    df.to_csv("output/processed_sales.csv", index=False)
+
+    logging.info("Pipeline completed successfully")
+
+    print("Pipeline completed successfully ✅")
 
 
-# =========================================
-# PIPELINE COMPLETE
-# =========================================
+except Exception as e:
+    logging.error(f"Error occurred: {e}")
+    print("Error occurred ❌:", e)

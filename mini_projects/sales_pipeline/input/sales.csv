@@ -1,0 +1,6 @@
+order_id,customer,city,amount,date
+1,A,Pune,1000,2024-01-01
+2,B,Mumbai,2000,2024-01-02
+3,C,Pune,,2024-01-03
+4,D,Delhi,3000,2024-01-04
+5,E,Mumbai,1500,2024-01-05
